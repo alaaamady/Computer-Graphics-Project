@@ -64,6 +64,7 @@ void drawArc  (float x_center, float y_center, float w, float h, float startAngl
 	{
 		x = w/2 * cos (theta);
 		y = h/2 * sin (theta);
+		glVertex2f (x, y);
 
 	}
 
@@ -81,16 +82,48 @@ void display() {
     //FACE
 
 	glColor3f(0.9,0.7,0.4);
+    fillOval (0, 45, 30, 40, 50);
 
-    fillOval (0.0, 45.0, 30.0, 40.0, 50);
+    //NECK
+    glBegin(GL_POLYGON);
+	glColor3f(0.9,0.7,0.4);
+
+    glVertex2f(-5,30);
+	glVertex2f(5,30);
+	glVertex2f(5,20);
+	glVertex2f(-5,20);
+
+	glEnd();
+
+    //EYES
+    glColor3f(0.5,0.6,0.9);
+    fillOval(-6, 47, 4, 3, 50);
+    fillOval(6, 47, 4, 3, 50);
+
+    //NOSE
+    glLineWidth(2);
+    glColor3f(0,0,0);
+    glBegin(GL_LINES);
+    glVertex2f(0,43);
+    glVertex2f(3,40);
+    glVertex2f(0,40);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(3,40);
+    glVertex2f(0,40);
+    glEnd();
 
 	glPushMatrix();
 
-	//LEFT ARM
+	//MOUTH
+	glPushMatrix();
+	glColor3f(0, 0, 0);
+	glTranslated(0, 35, 0);
+	GLUquadric* quadobj12 = gluNewQuadric();
+	gluPartialDisk(quadobj12, 4, 5, 100, 100, 90, 190);
+	glPopMatrix();
 
-	glColor3f(0.9,0.7,0.4);
-
-    drawArc (-125, -125, 20, 40, 0.785, 1.75, 10);
 
 	//TSHIRT
 
@@ -111,58 +144,70 @@ void display() {
 
 	glEnd();
 
-	//SHORTS
+	//LEFT ARM
+
+	glBegin(GL_POLYGON);
+    glColor3f(0.9,0.7,0.4);
+
+    glVertex2f(-45,20);
+	glVertex2f(-47,18);
+	glVertex2f(-32,2);
+	glVertex2f(-25,5);
+	glVertex2f(-30,10);
+	glVertex2f(-32,6);
+
+	glEnd();
+
+	//RIGHT ARM
+
+    glBegin(GL_POLYGON);
+    glColor3f(0.9,0.7,0.4);
+
+    glVertex2f(25,5);
+	glVertex2f(30,10);
+	glVertex2f(50,-10);
+	glVertex2f(45,-15);
+	glEnd();
+
+
+	//PANTS
 
 	glBegin(GL_POLYGON);
 	glColor3f(0.5,0.6,0.9);
 
     glVertex2f(-20,-20);
 	glVertex2f(20,-20);
-	glVertex2f(20,-40);
-	glVertex2f(4,-40);
-	glVertex2f(0,-30);
-	glVertex2f(-4,-40);
-	glVertex2f(-20,-40);
+	glVertex2f(20,-70);
+	glVertex2f(5,-70);
+	glVertex2f(-5,-70);
+	glVertex2f(-20,-70);
 
 
 	glEnd();
-    //LEFT LEG
-    glBegin(GL_POLYGON);
-	glColor3f(0.9,0.7,0.4);
 
-    glVertex2f(-16,-40);
-	glVertex2f(-16,-70);
-	glVertex2f(-10,-70);
-	glVertex2f(-10,-40);
+
+
+	//SHOES
+
+	glBegin(GL_POLYGON);
+	glColor3f(1,1,1);
+
+    glVertex2f(-20,-70);
+	glVertex2f(-20,-80);
+	glVertex2f(20,-80);
+	glVertex2f(20,-70);
+
 
 	glEnd();
+    glLineWidth(10);
+    glBegin(GL_LINES);
 
-    //RIGHT LEG
-    glBegin(GL_POLYGON);
-	glColor3f(0.9,0.7,0.4);
-
-    glVertex2f(10,-40);
-	glVertex2f(10,-70);
-	glVertex2f(16,-70);
-	glVertex2f(16,-40);
-
+	glColor3f(0,0,0);
+	glVertex2f(0,-20);
+	glVertex2f(0,-80);
 	glEnd();
-
-	//NECK
-    glBegin(GL_POLYGON);
-	glColor3f(0.9,0.7,0.4);
-
-    glVertex2f(-5,30);
-	glVertex2f(5,30);
-	glVertex2f(5,20);
-	glVertex2f(-5,20);
-
-	glEnd();
-
-
 
 	glPopMatrix();
-
 	glFlush();
 
 }
