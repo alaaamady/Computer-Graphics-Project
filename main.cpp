@@ -124,6 +124,17 @@ void display() {
 	gluPartialDisk(quadobj12, 4, 5, 100, 100, 90, 190);
 	glPopMatrix();
 
+    //HAIR
+	glBegin(GL_POLYGON);
+    glColor3f(0.8,0.5,0.1);
+
+    glVertex2f(-14,55);
+	glVertex2f(14,55);
+	glVertex2f(17,68);
+	glVertex2f(10,65);
+	glVertex2f(-10,65);
+
+	glEnd();
 
 	//TSHIRT
 
@@ -215,7 +226,7 @@ void display() {
 
 int main(int argc, char * argv[]) {
     glutInit(&argc,argv);
-	glutInitWindowSize(600, 600);
+	glutInitWindowSize(500, 500);
 
 	glutInitWindowPosition(100, 100);
 
@@ -227,7 +238,7 @@ int main(int argc, char * argv[]) {
 
 	glClearColor(0, 0, 0, 0);
 
-	gluOrtho2D(-150, 150, -150, 150);
+	gluOrtho2D(-200, 200, -200, 200);
 
 	glutMainLoop();
 }
